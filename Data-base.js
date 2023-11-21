@@ -1,3 +1,84 @@
+class Course {
+    courseStudents = [];
+    courseTeachers = [];
+
+    constructor (cName) {
+        this.cName = cName;
+    }
+
+    printCourseStudents = () => {
+        if(this.courseStudents.length <= 0) {
+            console.log("add students first");
+        } else {
+            console.log(`Students in ${this.cName} are`);
+            for(let i = 0; i < this.courseStudents.length; i++) {
+                console.log(this.courseStudents[i].firstName);
+            }
+        }
+    }
+
+    printCourseTeachers = () => {
+        if(this.courseTeachers.length <= 0) {
+            console.log("add teachers first");
+        } else {
+            console.log(`the teacher in ${this.cName} is`);
+            for(let i = 0; i < this.courseTeachers.length; i++) {
+                console.log(this.courseTeachers[i].name);
+            }
+        }
+    }
+
+    assignStudent = student => {
+        for(let i = 0; i < students.length; i ++) {
+            if(students[i].firstName === student.firstName) {
+                this.courseStudents.push(students[i]);
+                console.log(`The new student is ${student.firstName} ${student.lastName}`);
+                return true;
+            }
+        }
+        console.log("couldnt find student");
+        return false;
+    }
+
+    assignTeacher = teacher => {
+        for(let i = 0; i < teachers.length; i ++) {
+            if(teachers[i].name === teacher.name) {
+                this.courseTeachers.push(teachers[i]);
+                console.log(`The new teacher is ${teacher.name}`);
+                return true;
+            }
+        }
+        console.log("couldnt find teacher");
+        return false;
+    }
+}
+class Teacher {
+    constructor(name, course, yearOfTeach) {
+        this.name = name;
+        this.course = course;
+        this.yearOfTeach = yearOfTeach;
+    }
+}
+
+const MsBostic = new Teacher("Ms.Bostic", "Science", 7);
+const MsEarnhaert = new Teacher("Ms.Earnhaert", "Art", 10);
+const MrBeckett = new Teacher("Mr.Beckett", "W.H", 1);
+
+let teachers = [MsBostic, MsEarnhaert, MrBeckett];
+
+const getTeacher = teacher => {
+    for(let i = 0; i < teachers.length; i++) {
+        if(teachers[i].name === teacher.name) {
+            console.log(teachers[i]);
+            return true;
+        }
+    }
+    console.log("This teacher doesn't teach here");
+    return false;
+};
+
+getTeacher(MsBostic);
+
 // Define a class representing a Student
 class Student {
     // Constructor to initialize the properties of a student
@@ -77,3 +158,12 @@ const removeStudent = student => {
 getStudent(Devon);
 makeStudent("Leah", "West", 8341, 1.9);
 removeStudent(Josh);
+
+const science = new Course("science");
+
+science.assignTeacher(MsBostic);
+science.assignStudent(Devon);
+science.assignStudent(Micah);
+
+science.printCourseStudents();
+science.printCourseTeachers();
